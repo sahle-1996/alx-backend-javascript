@@ -1,35 +1,15 @@
-const fs = require('fs');
+const http = require('http');
 
-function countStudents(filePath) {
-  const studentList = {};
-  const fieldCount = {};
-  let totalStudents = 0;
+const app = http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Hello Holberton School!');
+});
 
-  return new Promise((resolve, reject) => {
-    fs.readFile(filePath, 'utf-8', (err, content) => {
-      if (err) {
-        reject(new Error('Cannot load the database'));
-      } else {
-        const rows = content.split('\n');
-        rows.forEach((row) => {
-          if (row.trim()) {
-            totalStudents += 1;
-            const [name, , , field] = row.split(',');
-            if (!studentList[field]) studentList[field] = [];
-            studentList[field].push(name);
+const port = 1245;
+const hostname = 'localhost';
 
-            fieldCount[field] = (fieldCount[field] || 0) + 1;
-          }
-        });
+app.listen(port, hostname, () => {
+  // Server is running
+});
 
-        console.log(`Number of students: ${totalStudents - 1}`);
-        Object.entries(fieldCount).forEach(([field, count]) => {
-          console.log(`Number of students in ${field}: ${count}. List: ${studentList[field].join(', ')}`);
-        });
-        resolve(content);
-      }
-    });
-  });
-}
-
-module.exports = countStudents;
+module.exports = app;
