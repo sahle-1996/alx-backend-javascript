@@ -1,31 +1,33 @@
+#!/usr/bin/env node
+
 const assert = require('assert');
 const calculateNumber = require('./1-calcul');
 
-describe('calculateNumber Function Tests', () => {
-  describe('Operation: SUM', () => {
-    it('should return the sum of two positive numbers', () => {
-      assert.strictEqual(calculateNumber('SUM', 1.4, 3.6), 5);
+describe('calculateNumber', () => {
+  describe('type == "SUM"', () => {
+    it('should return the sum of two rounded positive numbers', () => {
+      assert.strictEqual(calculateNumber('SUM', 2.6, 3.1), 6);
     });
 
-    it('should return the sum of two negative numbers', () => {
-      assert.strictEqual(calculateNumber('SUM', -1.5, -2.4), -4);
+    it('should return the sum of two rounded negative numbers', () => {
+      assert.strictEqual(calculateNumber('SUM', -2.3, -3.8), -6);
     });
 
     it('should return the sum of a positive and a negative number', () => {
-      assert.strictEqual(calculateNumber('SUM', 1.2, -3.8), -2);
+      assert.strictEqual(calculateNumber('SUM', 4.2, -3.7), 0);
     });
 
-    it('should handle summing zero', () => {
+    it('should handle adding zero', () => {
       assert.strictEqual(calculateNumber('SUM', 0.0, 2.9), 3);
     });
   });
 
-  describe('Operation: SUBTRACT', () => {
-    it('should return the difference between two positive numbers', () => {
+  describe('type == "SUBTRACT"', () => {
+    it('should return the difference of two rounded positive numbers', () => {
       assert.strictEqual(calculateNumber('SUBTRACT', 5.8, 2.1), 4);
     });
 
-    it('should return the difference between two negative numbers', () => {
+    it('should return the difference of two rounded negative numbers', () => {
       assert.strictEqual(calculateNumber('SUBTRACT', -3.7, -1.2), -3);
     });
 
@@ -38,24 +40,24 @@ describe('calculateNumber Function Tests', () => {
     });
   });
 
-  describe('Operation: DIVIDE', () => {
-    it('should return the quotient of two positive numbers', () => {
+  describe('type == "DIVIDE"', () => {
+    it('should return the quotient of two rounded positive numbers', () => {
       assert.strictEqual(calculateNumber('DIVIDE', 9.7, 3.1), 3);
     });
 
-    it('should return the quotient of two negative numbers', () => {
+    it('should return the quotient of two rounded negative numbers', () => {
       assert.strictEqual(calculateNumber('DIVIDE', -7.8, -2.3), 4);
     });
 
-    it('should return the quotient when dividing a positive by a negative', () => {
+    it('should return the quotient of a positive and a negative number', () => {
       assert.strictEqual(calculateNumber('DIVIDE', 8.4, -2.4), -4);
     });
 
-    it('should handle division by zero and return "Error"', () => {
+    it('should return "Error" for division by zero', () => {
       assert.strictEqual(calculateNumber('DIVIDE', 5.0, 0.0), 'Error');
     });
 
-    it('should handle numbers rounded to zero and return "Error"', () => {
+    it('should return "Error" for division by a number rounded to zero', () => {
       assert.strictEqual(calculateNumber('DIVIDE', 4.7, 0.4), 'Error');
     });
 
@@ -72,13 +74,9 @@ describe('calculateNumber Function Tests', () => {
     });
   });
 
-  describe('Edge Cases and Invalid Inputs', () => {
-    it('should throw an error for invalid operation type', () => {
-      assert.throws(() => calculateNumber('MULTIPLY', 2, 3), /Invalid type/);
-    });
-
-    it('should handle floating point numbers correctly', () => {
-      assert.strictEqual(calculateNumber('SUM', 0.1 + 0.2, 0.1), 0.5);
+  describe('Invalid type', () => {
+    it('should throw an error for an invalid operation type', () => {
+      assert.throws(() => calculateNumber('MULTIPLY', 2, 3), /Invalid operation type/);
     });
   });
 });
