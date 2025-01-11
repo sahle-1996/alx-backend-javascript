@@ -1,15 +1,15 @@
 export function taskFirst() {
-  const message = 'I prefer const when I can.';
-  return message;
+  const statement = 'I prefer const when I can.';
+  return statement;
 }
 
 export function getLast() {
-  const suffix = ' is okay';
-  return suffix;
+  const addition = ' is okay';
+  return addition;
 }
 
 export function taskNext() {
-  let sentence = 'But sometimes let';
-  sentence = `${sentence}${getLast()}`;
-  return sentence;
+  let phrase = 'But sometimes let';
+  phrase += getLast();
+  return phrase;
 }
