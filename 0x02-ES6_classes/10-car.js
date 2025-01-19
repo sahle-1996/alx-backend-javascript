@@ -1,6 +1,6 @@
 export default class Car {
   constructor(brand, motor, color) {
-    this._brand = brand; // Underscore attributes for storage
+    this._brand = brand; // Use underscore-prefixed private properties
     this._motor = motor;
     this._color = color;
   }
@@ -9,32 +9,32 @@ export default class Car {
     return this._brand;
   }
 
-  set brand(newBrand) {
-    this._brand = newBrand;
+  set brand(value) {
+    this._brand = value;
   }
 
   get motor() {
     return this._motor;
   }
 
-  set motor(newMotor) {
-    this._motor = newMotor;
+  set motor(value) {
+    this._motor = value;
   }
 
   get color() {
     return this._color;
   }
 
-  set color(newColor) {
-    this._color = newColor;
+  set color(value) {
+    this._color = value;
   }
 
   static get [Symbol.species]() {
-    return this; // Ensures cloning uses the same class
+    return this;
   }
 
   cloneCar() {
     const CarClass = this.constructor[Symbol.species];
-    return new CarClass(this._brand, this._motor, this._color); // Include original attributes in clone
+    return new CarClass(this._brand, this._motor, this._color);
   }
 }
