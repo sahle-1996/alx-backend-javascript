@@ -1,47 +1,35 @@
-export class TrainingClass {
+export class HolbertonClass {
   constructor(year, location) {
-    this._year = year;
-    this._location = location;
-  }
-
-  get year() {
-    return this._year;
-  }
-
-  get location() {
-    return this._location;
+    this.year = year; // Public property instead of private
+    this.location = location; // Public property instead of private
   }
 }
 
-export class Trainee {
-  constructor(firstName, lastName, trainingClass) {
-    this._firstName = firstName;
-    this._lastName = lastName;
-    this._trainingClass = trainingClass;
+export class StudentHolberton {
+  constructor(firstName, lastName, holbertonClass) {
+    this.firstName = firstName; // Public property instead of private
+    this.lastName = lastName; // Public property instead of private
+    this.holbertonClass = holbertonClass; // Public property instead of private
   }
 
   get fullName() {
-    return `${this._firstName} ${this._lastName}`;
+    return `${this.firstName} ${this.lastName}`;
   }
 
-  get trainingClass() {
-    return this._trainingClass;
-  }
-
-  get description() {
-    return `${this._firstName} ${this._lastName} - ${this._trainingClass.year} - ${this._trainingClass.location}`;
+  get fullStudentDescription() {
+    return `${this.firstName} ${this.lastName} - ${this.holbertonClass.year} - ${this.holbertonClass.location}`;
   }
 }
 
-const batch2019 = new TrainingClass(2019, 'San Francisco');
-const batch2020 = new TrainingClass(2020, 'San Francisco');
+const class2019 = new HolbertonClass(2019, 'San Francisco');
+const class2020 = new HolbertonClass(2020, 'San Francisco');
 
-const trainee1 = new Trainee('Guillaume', 'Salva', batch2020);
-const trainee2 = new Trainee('John', 'Doe', batch2020);
-const trainee3 = new Trainee('Albert', 'Clinton', batch2019);
-const trainee4 = new Trainee('Donald', 'Bush', batch2019);
-const trainee5 = new Trainee('Jason', 'Sandler', batch2019);
+const student1 = new StudentHolberton('Guillaume', 'Salva', class2020);
+const student2 = new StudentHolberton('John', 'Doe', class2020);
+const student3 = new StudentHolberton('Albert', 'Clinton', class2019);
+const student4 = new StudentHolberton('Donald', 'Bush', class2019);
+const student5 = new StudentHolberton('Jason', 'Sandler', class2019);
 
-const traineeList = [trainee1, trainee2, trainee3, trainee4, trainee5];
+const listOfStudents = [student1, student2, student3, student4, student5];
 
-export default traineeList;
+export default listOfStudents;   
