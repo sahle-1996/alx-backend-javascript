@@ -1,17 +1,16 @@
 /**
- * Creates a string from the set values that start with a specific prefix, 
- * removing the prefix from each of them and joining with a dash.
+ * Concatenates parts of strings from a set that start with a specified prefix.
  * @param {Set<String>} set - A collection of strings.
- * @param {String} startString - The string to remove from the beginning of each element in the set.
- * @returns {String} A string of modified set values, joined by dashes.
+ * @param {String} startString - The prefix to remove from the beginning of each string.
+ * @returns {String} A concatenated string of the remaining parts of matching strings, separated by a dash.
  */
 export default function cleanSet(set, startString) {
-  if (!set || !startString || !(set instanceof Set) || typeof startString !== 'string') {
+  if (!(set instanceof Set) || typeof startString !== 'string') {
     return '';
   }
-  
-  return Array.from(set)
-    .filter((value) => typeof value === 'string' && value.startsWith(startString))
-    .map((value) => value.slice(startString.length))
+
+  return [...set]
+    .filter(item => typeof item === 'string' && item.startsWith(startString))
+    .map(item => item.slice(startString.length))
     .join('-');
 }
