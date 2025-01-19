@@ -1,15 +1,12 @@
 /**
- * Verifies if all elements of an array are present in a set.
- * @param {Set} set - The set of unique elements.
- * @param {Array} array - The array of items to check.
- * @returns {boolean} True if all elements are found in the set, otherwise false.
+ * Verifies if all elements in an array are present in a set.
+ * @param {Set} set - The set to check against.
+ * @param {Array} array - The array whose elements are checked for existence in the set.
+ * @returns {Boolean} True if all array elements are in the set, otherwise false.
  */
 export default function hasValuesFromArray(set, array) {
-  if (array.length === 0) return true;
-  for (let i = 0; i < array.length; i++) {
-    if (!set.has(array[i])) {
-      return false;
-    }
+  if (!(set instanceof Set)) {
+    throw new TypeError('First argument must be a Set');
   }
-  return true;
+  return array.reduce((result, item) => result && set.has(item), true);
 }
