@@ -1,8 +1,11 @@
 /**
- * Extracts the ids from a student list.
- * @param {Array<{id: number, firstName: string, location: string}>} students - Array of student objects.
- * @returns {number[]} An array of student ids, or an empty array if input is invalid.
+ * Extracts the ids from a list of students.
+ * @param {Array<{id: number, firstName: string, location: string}>} students - The student list.
+ * @returns {number[]} Array of student ids or an empty array if input is invalid.
  */
 export default function getListStudentIds(students) {
-  return Array.isArray(students) ? students.map((item) => item.id) : [];
+  if (Array.isArray(students)) {
+    return students.map((student) => student.id);
+  }
+  return [];
 }
