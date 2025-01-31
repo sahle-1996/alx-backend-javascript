@@ -1,9 +1,9 @@
-export default function createBudget(income, gdp, capita) {
-  const financialSummary = {
+export default function getBudgetObject(income, gdp, capita) {
+  const budget = {
     income,
     gdp,
     capita,
   };
 
-  return financialSummary;
+  return budget;
 }
