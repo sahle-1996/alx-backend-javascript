@@ -1,19 +1,12 @@
-/**
- * Application routes setup
- */
-import { Router } from 'express';
+const express = require('express');
+const router = express.Router();
+
 import AppController from '../controllers/AppController';
 import StudentsController from '../controllers/StudentsController';
 
-const appRoutes = Router();
+router.get('/', (req, res) => AppController.getHomepage(req, res));
+router.get('/students', (req, res) => StudentsController.getAllStudents(req, res));
+router.get('/students/:major', (req, res) => StudentsController.getAllStudentsByMajor(req, res));
 
-// Route for homepage
-appRoutes.get('/', AppController.getHomepage);
-
-// Route for listing all students
-appRoutes.get('/students', StudentsController.listAllStudents);
-
-// Route for listing students by their major
-appRoutes.get('/students/:major', StudentsController.listStudentsByMajor);
-
-export default appRoutes;
+export default router;
+module.exports = router;
